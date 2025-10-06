@@ -8,11 +8,14 @@ const getAdminPublic = async () => {
     },
     select: {
       id: true,
+      profile: true,
+      blurProfile: true,
       name: true,
       email: true,
       bio: true,
       description: true,
       story: true,
+      _count: true,
     },
   });
   return data;
