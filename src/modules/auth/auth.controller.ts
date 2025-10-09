@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { catchAsync } from "../../utils/catch-async";
-import { AuthService } from "./auth.service";
-import { sendResponse } from "../../utils/send-response";
 import httpStatus from "http-status-codes";
-import { setCookie } from "../../utils/cookies";
 import cookieNames from "../../constants/cookie-names";
+import { catchAsync } from "../../utils/catch-async";
+import { setCookie } from "../../utils/cookies";
+import { sendResponse } from "../../utils/send-response";
+import { AuthService } from "./auth.service";
 
 const verify = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
