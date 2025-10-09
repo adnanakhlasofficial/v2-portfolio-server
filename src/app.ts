@@ -4,6 +4,7 @@ import express from "express";
 import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import router from "./routers";
+import globalError from "./middlewares/global-error";
 
 const app = express();
 
@@ -24,6 +25,9 @@ app.use("/api/v1", router);
 app.get("/", (_req, res) => {
   res.send("API is running");
 });
+
+// Global Error Handler
+app.use(globalError);
 
 // 404 Handler
 app.use((req, res, next) => {
