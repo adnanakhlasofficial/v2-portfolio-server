@@ -6,5 +6,6 @@ import { verifySchema } from "./auth.zod";
 const router = Router();
 
 router.post("/verify", checkRequest(verifySchema), AuthController.verify);
+router.post("/disconnect", AuthController.disconnect);
 
 export const AuthRouter = router;
