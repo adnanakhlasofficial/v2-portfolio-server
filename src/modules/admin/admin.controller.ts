@@ -14,6 +14,19 @@ const getAdminPublic = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateAdmin = catchAsync(async (req: Request, res: Response) => {
+  const id = req.user.id;
+  const payload = req.body;
+  const data = await AdminService.updateAdmin(id, payload);
+  sendResponse(res, {
+    status: httpStatus.OK,
+    success: true,
+    message: "Admin profile updated successfully.",
+    data,
+  });
+});
+
 export const AdminController = {
   getAdminPublic,
+  updateAdmin,
 };

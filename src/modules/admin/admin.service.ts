@@ -1,5 +1,9 @@
 import { env } from "../../configs/env";
+import AppError from "../../helpers/AppError";
 import { prisma } from "../../libs/prisma";
+import { TAdmin } from "./admin.interface";
+import bcrypt from "bcrypt";
+import httpStatus from "http-status-codes";
 
 const getAdminPublic = async () => {
   const data = await prisma.admin.findUnique({
@@ -21,6 +25,37 @@ const getAdminPublic = async () => {
   return data;
 };
 
+const updateAdmin = async (id: string, payload: TAdmin) => {
+  const admin = await prisma.admin.findUnique({
+    where: { id },
+  });
+
+  if (!admin) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      "Admin not found. Update failed."
+    );
+  }
+
+  const isPasswordOK = await bcrypt.compare(
+    payload.password as string,
+    admin.password
+  );
+
+  if (!isPasswordOK) {
+    throw new AppError(httpStatus.BAD_REQUEST, "Invalid credentials");
+  }
+
+  const { password, ...updatePayload } = payload;
+
+  const data = await prisma.admin.update({
+    where: { id },
+    data: updatePayload,
+  });
+  return data;
+};
+
 export const AdminService = {
   getAdminPublic,
+  updateAdmin,
 };

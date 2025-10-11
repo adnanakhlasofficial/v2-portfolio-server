@@ -15,9 +15,9 @@ app.use(
     credentials: true,
   })
 ); // Enables Cross-Origin Resource Sharing
-app.use(morgan("dev"));
-app.use(compression()); // Compresses response bodies for faster delivery
 app.use(express.json()); // Parse incoming JSON requests
+app.use(compression()); // Compresses response bodies for faster delivery
+app.use(morgan("dev"));
 app.use(cookieParser());
 app.use("/api/v1", router);
 

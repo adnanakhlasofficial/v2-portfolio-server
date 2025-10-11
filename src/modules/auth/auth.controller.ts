@@ -28,4 +28,14 @@ const disconnect = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const AuthController = { verify, disconnect };
+const checkConnect = catchAsync(async (req: Request, res: Response) => {
+  const payload = req.user;
+  sendResponse(res, {
+    status: httpStatus.OK,
+    success: true,
+    message: "Check connection succeed",
+    data: payload,
+  });
+});
+
+export const AuthController = { verify, disconnect, checkConnect };
