@@ -55,7 +55,18 @@ const updateAdmin = async (id: string, payload: TAdmin) => {
   return data;
 };
 
+const getAdminPrivate = async () => {
+  const data = await prisma.admin.findUnique({
+    where: { username: env.ADMIN_USERNAME },
+    include: {
+      _count: true,
+    },
+  });
+  return data;
+};
+
 export const AdminService = {
   getAdminPublic,
   updateAdmin,
+  getAdminPrivate,
 };

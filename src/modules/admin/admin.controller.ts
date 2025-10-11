@@ -26,7 +26,18 @@ const updateAdmin = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getAdminPrivate = catchAsync(async (req: Request, res: Response) => {
+  const data = await AdminService.getAdminPrivate();
+  sendResponse(res, {
+    status: httpStatus.OK,
+    success: true,
+    message: "Admin details retrieved successfully.",
+    data,
+  });
+});
+
 export const AdminController = {
   getAdminPublic,
   updateAdmin,
+  getAdminPrivate,
 };
