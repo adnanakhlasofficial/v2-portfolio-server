@@ -10,7 +10,7 @@ const verify = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const data = await AuthService.verify(payload);
 
-  setCookie(res, cookieNames.accessToken, data);
+  setCookie(res, cookieNames.accessToken, data, 60 * 60);
 
   sendResponse(res, {
     status: httpStatus.OK,
