@@ -10,7 +10,7 @@ export const setCookie = (
     httpOnly: true,
     secure: true,
     sameSite: "none",
-    maxAge: expiration,
+    // maxAge: expiration,
   });
 };
 

@@ -1,6 +1,6 @@
 import z from "zod";
 
-export const adminSchema = z.object({
+export const adminZodSchema = z.object({
   username: z.string().optional(),
   name: z.string().optional(),
   email: z.email().optional(),

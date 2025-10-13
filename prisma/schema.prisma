@@ -81,6 +81,7 @@ model Project {
   slug           String   @unique
   title          String
   description    String
+  category       String
   tags           String[]
   content        String? // JSON or Markdown
   thumbnail      String // URL to image

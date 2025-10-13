@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { AdminRouter } from "../modules/admin/admin.route";
 import { AuthRouter } from "../modules/auth/auth.route";
+import { ProjectRouter } from "../modules/project/project.route";
 
 interface IRoute {
   path: string;
@@ -17,6 +18,10 @@ const routes: IRoute[] = [
   {
     path: "/admin",
     router: AdminRouter,
+  },
+  {
+    path: "/project",
+    router: ProjectRouter,
   },
 ];
 

@@ -10,7 +10,6 @@ const checkAuth =
     try {
       const tokenName = cookieNames.accessToken;
       const token = req.cookies[tokenName] || req.headers.authorization;
-
       if (!token) {
         throw new AppError(httpStatus.FORBIDDEN, "Forbidden access.");
       }
