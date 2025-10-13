@@ -7,7 +7,6 @@ import httpStatus from "http-status-codes";
 const addProject = catchAsync(async (req: Request, res: Response) => {
   const id = req.user.id;
   const payload = req.body;
-  console.log(payload);
   const data = await ProjectService.addProject(id, payload);
   sendResponse(res, {
     status: httpStatus.CREATED,

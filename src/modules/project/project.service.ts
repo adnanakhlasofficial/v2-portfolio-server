@@ -31,6 +31,9 @@ const addProject = async (id: string, payload: TProject) => {
 
 const getProjects = async () => {
   const data = await prisma.project.findMany({
+    orderBy: {
+      updatedAt: "desc",
+    },
     select: {
       slug: true,
       title: true,
