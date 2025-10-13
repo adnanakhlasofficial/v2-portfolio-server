@@ -13,5 +13,6 @@ router.post(
   ProjectController.addProject
 );
 router.get("/", ProjectController.getProjects);
+router.get("/:slug", ProjectController.getSingleProjects);
 
 export const ProjectRouter = router;

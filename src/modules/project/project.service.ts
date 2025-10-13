@@ -48,4 +48,24 @@ const getProjects = async () => {
   return data;
 };
 
-export const ProjectService = { addProject, getProjects };
+const getSingleProjects = async (slug: string) => {
+  const data = await prisma.project.findUnique({
+    where: { slug },
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      category: true,
+      tags: true,
+      thumbnail: true,
+      liveLink: true,
+      clientRepoLink: true,
+      serverRepoLink: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return data;
+};
+
+export const ProjectService = { addProject, getProjects, getSingleProjects };
