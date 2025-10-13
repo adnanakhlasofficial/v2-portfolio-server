@@ -12,5 +12,6 @@ router.post(
   checkRequest(projectZodSchema),
   ProjectController.addProject
 );
+router.get("/", ProjectController.getProjects);
 
 export const ProjectRouter = router;

@@ -11,9 +11,41 @@ const addProject = async (id: string, payload: TProject) => {
 
   const data = await prisma.project.create({
     data: modifiedPayload,
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      category: true,
+      tags: true,
+      thumbnail: true,
+      liveLink: true,
+      clientRepoLink: true,
+      serverRepoLink: true,
+      createdAt: true,
+      updatedAt: true,
+    },
   });
 
   return data;
 };
 
-export const ProjectService = { addProject };
+const getProjects = async () => {
+  const data = await prisma.project.findMany({
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      category: true,
+      tags: true,
+      thumbnail: true,
+      liveLink: true,
+      clientRepoLink: true,
+      serverRepoLink: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return data;
+};
+
+export const ProjectService = { addProject, getProjects };

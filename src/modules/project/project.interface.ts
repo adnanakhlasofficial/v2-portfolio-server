@@ -6,6 +6,7 @@ export type TProject = Pick<
   | "description"
   | "category"
   | "tags"
+  // | "content"
   | "thumbnail"
   | "liveLink"
   | "clientRepoLink"
