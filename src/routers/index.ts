@@ -2,6 +2,7 @@ import { Router } from "express";
 import { AdminRouter } from "../modules/admin/admin.route";
 import { AuthRouter } from "../modules/auth/auth.route";
 import { ProjectRouter } from "../modules/project/project.route";
+import { ExperienceRouter } from "../modules/experience/experience.route";
 
 interface IRoute {
   path: string;
@@ -22,6 +23,10 @@ const routes: IRoute[] = [
   {
     path: "/project",
     router: ProjectRouter,
+  },
+  {
+    path: "/experience",
+    router: ExperienceRouter,
   },
 ];
 
