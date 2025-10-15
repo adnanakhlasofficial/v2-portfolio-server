@@ -45,4 +45,21 @@ const getBlogs = async () => {
   return data;
 };
 
-export const BlogService = { addBlog, getBlogs };
+const getSingleBlog = async (slug: string) => {
+  const data = await prisma.blog.findUnique({
+    where: { slug },
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      thumbnail: true,
+      content: true,
+      published: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return data;
+};
+
+export const BlogService = { addBlog, getBlogs, getSingleBlog };

@@ -14,5 +14,6 @@ router.post(
 );
 
 router.get("/", BlogController.getBlogs);
+router.get("/:slug", BlogController.getSingleBlog);
 
 export const BlogRouter = router;

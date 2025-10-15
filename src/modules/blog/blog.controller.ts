@@ -26,4 +26,15 @@ const getBlogs = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const BlogController = { addBlog, getBlogs };
+const getSingleBlog = catchAsync(async (req: Request, res: Response) => {
+  const slug = req.params.slug;
+  const data = await BlogService.getSingleBlog(slug);
+  sendResponse(res, {
+    status: httpStatus.OK,
+    success: true,
+    message: "Blog retrieved successfully!",
+    data,
+  });
+});
+
+export const BlogController = { addBlog, getBlogs, getSingleBlog };
