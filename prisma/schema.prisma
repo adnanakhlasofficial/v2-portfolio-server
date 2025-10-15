@@ -64,13 +64,15 @@ model SoftSkill {
 }
 
 model Blog {
-  id        String   @id @default(uuid())
-  title     String
-  slug      String   @unique
-  content   String // Rich text (HTML or Markdown)
-  published Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  slug        String   @unique
+  title       String
+  description String
+  thumbnail   String
+  content     String // Rich text (HTML or Markdown)
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   adminId String
   admin   Admin  @relation(fields: [adminId], references: [id])
