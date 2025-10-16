@@ -17,10 +17,14 @@ export async function createDefaultAdmin() {
 
   const admin = await prisma.admin.create({
     data: {
-      username: env.ADMIN_USERNAME || "admin",
-      name: env.ADMIN_NAME || "Default Admin",
-      email: env.ADMIN_EMAIL || "admin@example.com",
+      profile: env.ADMIN_PROFILE,
+      username: env.ADMIN_USERNAME,
+      name: env.ADMIN_NAME,
+      email: env.ADMIN_EMAIL,
       password: hashedPassword,
+      bio: env.ADMIN_BIO,
+      description: env.ADMIN_DESCRIPTION,
+      story: env.ADMIN_STORY,
     },
   });
 

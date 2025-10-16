@@ -29,7 +29,7 @@ const addBlog = async (id: string, payload: IBlog) => {
 const getBlogs = async () => {
   const data = await prisma.blog.findMany({
     orderBy: {
-      updatedAt: "desc",
+      createdAt: "desc",
     },
     select: {
       slug: true,

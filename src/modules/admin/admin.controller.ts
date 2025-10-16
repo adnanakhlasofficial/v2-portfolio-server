@@ -9,7 +9,7 @@ const getAdminPublic = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     status: httpStatus.OK,
     success: true,
-    message: "Admin details retrieved successfully.",
+    message: "Owner details retrieved successfully.",
     data,
   });
 });

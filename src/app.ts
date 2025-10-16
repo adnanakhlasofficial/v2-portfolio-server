@@ -15,7 +15,7 @@ app.use(
     credentials: true,
   })
 ); // Enables Cross-Origin Resource Sharing
-app.use(express.json()); // Parse incoming JSON requests
+app.use(express.json({ limit: "2mb" })); // Parse incoming JSON requests
 app.use(compression()); // Compresses response bodies for faster delivery
 app.use(morgan("dev"));
 app.use(cookieParser());
