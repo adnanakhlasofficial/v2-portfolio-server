@@ -62,4 +62,46 @@ const getSingleBlog = async (slug: string) => {
   return data;
 };
 
-export const BlogService = { addBlog, getBlogs, getSingleBlog };
+const deleteSingleBlog = async (slug: string) => {
+  const data = await prisma.blog.delete({
+    where: { slug },
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      thumbnail: true,
+      content: true,
+      published: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+  return data;
+};
+
+const updateBlog = async (slug: string, payload: IBlog) => {
+  const data = await prisma.blog.update({
+    where: { slug },
+    data: payload,
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      thumbnail: true,
+      content: true,
+      published: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  return data;
+};
+
+export const BlogService = {
+  addBlog,
+  getBlogs,
+  getSingleBlog,
+  deleteSingleBlog,
+  updateBlog,
+};

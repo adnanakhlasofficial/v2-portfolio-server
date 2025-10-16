@@ -37,4 +37,33 @@ const getSingleBlog = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export const BlogController = { addBlog, getBlogs, getSingleBlog };
+const deleteSingleBlog = catchAsync(async (req: Request, res: Response) => {
+  const slug = req.params.slug;
+  const data = await BlogService.deleteSingleBlog(slug);
+  sendResponse(res, {
+    status: httpStatus.OK,
+    success: true,
+    message: "Blog deleted successfully!",
+    data,
+  });
+});
+
+const updateBlog = catchAsync(async (req: Request, res: Response) => {
+  const slug = req.params.slug;
+  const payload = req.body;
+  const data = await BlogService.updateBlog(slug, payload);
+  sendResponse(res, {
+    status: httpStatus.CREATED,
+    success: true,
+    message: "Blog updated successfully.",
+    data,
+  });
+});
+
+export const BlogController = {
+  addBlog,
+  getBlogs,
+  getSingleBlog,
+  deleteSingleBlog,
+  updateBlog,
+};

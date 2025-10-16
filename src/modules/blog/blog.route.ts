@@ -15,5 +15,7 @@ router.post(
 
 router.get("/", BlogController.getBlogs);
 router.get("/:slug", BlogController.getSingleBlog);
+router.delete("/:slug", checkAuth(), BlogController.deleteSingleBlog);
+router.put("/:slug", checkAuth(), BlogController.updateBlog);
 
 export const BlogRouter = router;
