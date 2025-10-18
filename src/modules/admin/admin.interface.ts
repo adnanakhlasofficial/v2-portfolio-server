@@ -8,7 +8,6 @@ export type TAdmin = Partial<
     | "email"
     | "password"
     | "profile"
-    | "blurProfile"
     | "bio"
     | "description"
     | "story"

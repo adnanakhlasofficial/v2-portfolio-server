@@ -5,6 +5,7 @@ interface IENV {
   PORT: string;
   MONGODB_URI: string;
   NODE_ENV: string;
+  FRONTEND_URL: string;
   JWT_ACCESS_SECRET: string;
   JWT_ACCESS_EXPIRES_AT: string;
   JWT_REFRESH_SECRET: string;
@@ -23,6 +24,7 @@ interface IENV {
 const REQUIRED_ENV_KEYS: (keyof IENV)[] = [
   "PORT",
   "NODE_ENV",
+  "FRONTEND_URL",
   "JWT_ACCESS_SECRET",
   "JWT_ACCESS_EXPIRES_AT",
   "JWT_REFRESH_SECRET",

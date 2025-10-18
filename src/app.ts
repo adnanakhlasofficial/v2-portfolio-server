@@ -5,13 +5,14 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import router from "./routers";
 import globalError from "./middlewares/global-error";
+import { env } from "./configs/env";
 
 const app = express();
 
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", env.FRONTEND_URL],
     credentials: true,
   })
 ); // Enables Cross-Origin Resource Sharing

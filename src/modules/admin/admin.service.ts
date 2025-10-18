@@ -13,7 +13,6 @@ const getAdminPublic = async () => {
     select: {
       id: true,
       profile: true,
-      blurProfile: true,
       name: true,
       email: true,
       bio: true,

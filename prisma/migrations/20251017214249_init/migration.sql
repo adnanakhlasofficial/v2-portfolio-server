@@ -5,10 +5,10 @@ CREATE TABLE "Admin" (
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "profile" TEXT,
     "bio" TEXT,
     "description" TEXT,
     "story" TEXT,
-    "skills" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -46,11 +46,28 @@ CREATE TABLE "SoftSkill" (
 );
 
 -- CreateTable
+CREATE TABLE "Blog" (
+    "id" TEXT NOT NULL,
+    "slug" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "thumbnail" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "published" BOOLEAN NOT NULL DEFAULT false,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "adminId" TEXT NOT NULL,
+
+    CONSTRAINT "Blog_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Project" (
     "id" TEXT NOT NULL,
     "slug" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "category" TEXT NOT NULL,
     "tags" TEXT[],
     "content" TEXT,
     "thumbnail" TEXT NOT NULL,
@@ -90,6 +107,9 @@ CREATE UNIQUE INDEX "Admin_username_key" ON "Admin"("username");
 CREATE UNIQUE INDEX "Admin_email_key" ON "Admin"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Blog_slug_key" ON "Blog"("slug");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Project_slug_key" ON "Project"("slug");
 
 -- CreateIndex
@@ -103,6 +123,9 @@ ALTER TABLE "Tool" ADD CONSTRAINT "Tool_adminId_fkey" FOREIGN KEY ("adminId") RE
 
 -- AddForeignKey
 ALTER TABLE "SoftSkill" ADD CONSTRAINT "SoftSkill_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "Admin"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Blog" ADD CONSTRAINT "Blog_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "Admin"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Project" ADD CONSTRAINT "Project_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "Admin"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

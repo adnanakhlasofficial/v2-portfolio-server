@@ -20,11 +20,9 @@ model Admin {
   email       String   @unique
   password    String
   profile     String?
-  blurProfile String?
   bio         String?
   description String?
   story       String?
-  skills      String? // JSON or Markdown
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
