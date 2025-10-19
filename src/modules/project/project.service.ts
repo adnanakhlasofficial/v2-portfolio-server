@@ -18,6 +18,7 @@ const addProject = async (id: string, payload: TProject) => {
       category: true,
       tags: true,
       thumbnail: true,
+      content: true,
       liveLink: true,
       clientRepoLink: true,
       serverRepoLink: true,
@@ -41,6 +42,7 @@ const getProjects = async () => {
       category: true,
       tags: true,
       thumbnail: true,
+      content: true,
       liveLink: true,
       clientRepoLink: true,
       serverRepoLink: true,
@@ -61,6 +63,7 @@ const getSingleProjects = async (slug: string) => {
       category: true,
       tags: true,
       thumbnail: true,
+      content: true,
       liveLink: true,
       clientRepoLink: true,
       serverRepoLink: true,
@@ -71,4 +74,55 @@ const getSingleProjects = async (slug: string) => {
   return data;
 };
 
-export const ProjectService = { addProject, getProjects, getSingleProjects };
+const deleteProject = async (slug: string) => {
+  const data = await prisma.project.delete({
+    where: { slug },
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      category: true,
+      tags: true,
+      thumbnail: true,
+      content: true,
+      liveLink: true,
+      clientRepoLink: true,
+      serverRepoLink: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  return data;
+};
+
+const updateProject = async (slug: string, payload: TProject) => {
+  const data = await prisma.project.update({
+    where: { slug },
+    data: payload,
+    select: {
+      slug: true,
+      title: true,
+      description: true,
+      category: true,
+      tags: true,
+      thumbnail: true,
+      content: true,
+      liveLink: true,
+      clientRepoLink: true,
+      serverRepoLink: true,
+      createdAt: true,
+      updatedAt: true,
+    },
+  });
+
+  return data;
+};
+
+export const ProjectService = {
+  addProject,
+  getProjects,
+  getSingleProjects,
+  deleteProject,
+  updateProject,
+};
