@@ -1,10 +1,10 @@
 import compression from "compression";
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
-import cookieParser from "cookie-parser";
-import router from "./routers";
 import globalError from "./middlewares/global-error";
+import router from "./routers";
 import { env } from "./configs/env";
 
 const app = express();
@@ -12,7 +12,7 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000", env.FRONTEND_URL],
+    origin: ["http://localhost:3000", "http://v2-portfolio-client.vercel.app"],
     credentials: true,
   })
 ); // Enables Cross-Origin Resource Sharing
